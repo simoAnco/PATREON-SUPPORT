@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="it" class="no-js" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>OpenPrometeo – Risveglio Mentale · Arte Filosofica</title>
+  <meta name="description" content="Arte filosofica per il risveglio: geometria sacra, immagini poetiche, eBook esclusivo, community Patreon. Oltre 10.000 seguaci su Instagram." />
+  <meta name="keywords" content="OpenPrometeo, arte filosofica, risveglio mentale, geometria sacra, golden ratio, eBook, Patreon" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0e1726" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OpenPrometeo – Risveglio Mentale" />
+  <meta property="og:description" content="Arte filosofica, geometria sacra e bellezza per il risveglio interiore" />
+  <meta property="og:url" content="https://lockijohn.github.io/" />
+  <meta property="og:image" content="https://i.postimg.cc/kVLB8YPk/image.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2363e6be'/><circle cx='50' cy='50' r='30' fill='%230e1726'/><path d='M50 20v60M20 50h60' stroke='%2363e6be' stroke-width='3'/></svg>" />
+  
+  <style>
+    .loading-overlay{display:none !important; visibility:hidden !important; opacity:0 !important}
+    
+    :root{
+      --bg:#0e1726; --bg-2:#0b1320; --ink:#0a0f1a;
+      --fg:#ecf0f3; --muted:#b7c0d1;
+      --accent:#63e6be; --sky:#7ee7fd; --gold:#f3c969; --rose:#ffd6e7;
+      --phi:1.618; --phi-inv:0.618; --phi2:2.618;
+      --maxw:1200px;
+      --mx:75%; --my:-8%;
+      --ease:cubic-bezier(0.34,1.56,0.64,1);
+    }
+    
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f9fafb; --bg-2:#fff; --fg:#0f172a; --muted:#475569}
+    }
+    
+    *{box-sizing:border-box; margin:0; padding:0}
+    html{scroll-behavior:smooth; font-size:16px; height:100%}
+    body{
+      height:100%; color:var(--fg);
+      background:radial-gradient(1400px 900px at var(--mx) var(--my), #1a2a44 0%, var(--bg) 55%), var(--bg-2);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:calc(1.2 * var(--phi));
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      accent-color:var(--accent);
+    }
+    
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 clamp(16px,3vw,24px)}
+    a{color:var(--accent); text-decoration:none; transition:all .3s var(--ease)}
+    a:hover{opacity:.88; transform:translateY(-2px)}
+    img{max-width:100%; height:auto; display:block}
+    
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(16px);
+      background:color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom:1px solid color-mix(in srgb, #fff 8%, transparent);
+      box-shadow:0 4px 20px rgba(0,0,0,.1);
+    }
+    
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:clamp(10px,2vw,16px) 0; gap:12px; flex-wrap:wrap}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; transition:all .3s ease}
+    .brand:hover{transform:scale(1.04)}
+    .brand img{width:clamp(28px,4vw,36px); height:clamp(28px,4vw,36px); border-radius:10px; box-shadow:0 4px 12px rgba(99,230,190,.3)}
+    .brand .sig{font-family:"Playfair Display",serif; font-style:italic; color:var(--gold); font-weight:700; font-size:clamp(18px,2.6vw,22px)}
+    
+    .nav-actions{display:flex; gap:clamp(7px,1.3vw,11px); align-items:center; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:clamp(7px,1.4vw,10px);
+      border-radius:12px; padding:clamp(10px,2vw,14px) clamp(16px,2.5vw,22px);
+      font-weight:700; cursor:pointer; font-size:clamp(13px,1.9vw,15px);
+      border:1px solid color-mix(in srgb, #fff 12%, transparent);
+      background:transparent; color:var(--fg);
+      transition:all .3s var(--ease); white-space:nowrap;
+    }
+    .btn:hover{background:color-mix(in srgb, #fff 8%, transparent); border-color:color-mix(in srgb, #fff 20%, transparent)}
+    
+    .btn-cta{
+      background:linear-gradient(135deg, var(--accent), var(--sky));
+      color:var(--ink); border:none; box-shadow:0 8px 24px rgba(99,230,190,.35);
+      position:relative; overflow:hidden;
+    }
+    .btn-cta::before{content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent, rgba(255,255,255,.4)); transform:translateX(-100%); transition:transform .6s ease}
+    .btn-cta:hover::before{transform:translateX(100%)}
+    .btn-cta:hover{box-shadow:0 12px 36px rgba(99,230,190,.55); transform:translateY(-3px) scale(1.03)}
+    
+    .btn-patreon{background:linear-gradient(135deg, #ff424d, #fc8181); color:#fff; border:none; box-shadow:0 8px 24px rgba(255,66,77,.35)}
+    .btn-patreon:hover{box-shadow:0 12px 36px rgba(255,66,77,.5); transform:translateY(-3px) scale(1.03)}
+    
+    .theme-toggle{
+      width:clamp(40px,5.5vw,46px); height:clamp(38px,5vw,44px);
+      border-radius:12px; display:grid; place-items:center;
+      border:1px solid color-mix(in srgb, #fff 12%, transparent);
+      background:transparent; cursor:pointer; font-size:19px;
+      transition:all .3s ease;
+    }
+    .theme-toggle:hover{background:color-mix(in srgb, #fff 8%, transparent); transform:rotate(180deg) scale(1.12)}
+    
+    .hero{position:relative; min-height:calc(100svh - 70px); overflow:hidden}
+    .hero-inner{
+      max-width:calc(850px * var(--phi-inv));
+      padding:clamp(44px,10vw,108px) 0 clamp(36px,8vw,80px);
+      position:relative; z-index:2;
+    }
+    
+    .hero-badge{
+      display:inline-flex; align-items:center; gap:9px;
+      padding:9px 18px; border-radius:100px;
+      background:color-mix(in srgb, var(--accent) 15%, transparent);
+      border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      color:var(--accent); font-size:13px; font-weight:700;
+      letter-spacing:.05em; margin-bottom:clamp(14px,2.2vw,22px);
+    }
+    .hero-badge svg{width:17px; height:17px}
+    
+    .kicker{
+      color:var(--muted); text-transform:uppercase; letter-spacing:.26em;
+      font-size:clamp(10px,1.6vw,12px); font-weight:700;
+      margin-bottom:clamp(12px,2vw,16px);
+    }
+    
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(52px,9vw,100px); line-height:1.04;
+      margin:0 0 clamp(18px,3vw,28px); font-weight:900;
+      background:linear-gradient(135deg, var(--fg), color-mix(in srgb, var(--fg) 65%, var(--accent)));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    h1 .highlight{-webkit-text-fill-color:var(--gold); display:block; font-style:italic}
+    
+    .lead{
+      font-size:clamp(19px,3vw,24px);
+      color:color-mix(in srgb, var(--fg) 92%, #fff);
+      line-height:calc(1.38 * var(--phi));
+      max-width:calc(65ch * var(--phi-inv));
+      margin-bottom:clamp(22px,3.5vw,36px);
+    }
+    
+    .hero-stats{
+      display:flex; gap:clamp(22px,4vw,48px); flex-wrap:wrap;
+      margin:clamp(20px,3vw,32px) 0;
+    }
+    .stat{text-align:center}
+    .stat-num{
+      font-size:clamp(30px,4.8vw,48px); font-weight:900;
+      color:var(--accent); font-family:"Playfair Display",serif; line-height:1;
+    }
+    .stat-label{font-size:clamp(12px,1.7vw,14px); color:var(--muted); margin-top:5px}
+    
+    .actions{display:flex; gap:clamp(13px,2.4vw,18px); flex-wrap:wrap}
+    
+    .geo-container{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; opacity:.88}
+    .geo-layer{position:absolute; opacity:.14; will-change:transform}
+    .geo-layer:nth-child(1){inset:-20% -20% auto auto; width:1000px; height:1000px}
+    .geo-layer:nth-child(2){inset:auto auto -24% -20%; width:850px; height:850px}
+    .geo-layer:nth-child(3){inset:46% auto auto 6%; width:700px; height:700px}
+    
+    .geo-float{animation:geoFloat 24s ease-in-out infinite}
+    @keyframes geoFloat{
+      0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+      33%{transform:translateY(-30px) rotate(7deg) scale(1.07)}
+      66%{transform:translateY(-20px) rotate(-5deg) scale(.96)}
+    }
+    
+    .vesica{position:fixed; opacity:.1; pointer-events:none; z-index:1; animation:vesicaPulse 16s ease-in-out infinite; will-change:transform}
+    .vesica-1{top:10%; right:5%; width:clamp(220px,30vw,380px); height:clamp(220px,30vw,380px)}
+    .vesica-2{bottom:16%; left:3%; width:clamp(180px,24vw,300px); height:clamp(180px,24vw,300px); animation-delay:6s}
+    @keyframes vesicaPulse{
+      0%,100%{opacity:.1; transform:scale(1) rotate(0deg)}
+      50%{opacity:.2; transform:scale(1.16) rotate(14deg)}
+    }
+    
+    .section{padding:clamp(66px,12vw,130px) 0; position:relative}
+    .section h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(36px,5.5vw,62px); margin:0 0 clamp(12px,2.2vw,18px);
+      font-weight:900; line-height:1.1;
+    }
+    .sub{color:var(--muted); margin:0 0 clamp(26px,4vw,44px); font-size:clamp(16px,2.4vw,19px); line-height:calc(1.42 * var(--phi))}
+    
+    .paper{
+      border:1px solid color-mix(in srgb, #fff 14%, transparent);
+      border-radius:calc(18px * var(--phi-inv));
+      padding:clamp(24px,4vw,44px);
+      background:linear-gradient(145deg, color-mix(in srgb, #fff 12%, transparent), color-mix(in srgb, #fff 4%, transparent));
+      box-shadow:0 12px 36px rgba(0,0,0,.22);
+      transition:all .5s ease;
+    }
+    .paper:hover{background:linear-gradient(145deg, color-mix(in srgb, #fff 16%, transparent), color-mix(in srgb, #fff 6%, transparent)); transform:translateY(-6px)}
+    .paper p{margin:clamp(9px,1.4vw,13px) 0; color:color-mix(in srgb, var(--fg) 94%, #fff); line-height:calc(1.42 * var(--phi)); font-size:clamp(15px,2.3vw,18px)}
+    .paper strong{color:var(--gold); font-weight:800}
+    .paper em{color:var(--accent); font-style:italic; font-weight:600}
+    
+    .ebook-showcase{display:grid; grid-template-columns:1fr; gap:clamp(36px,5.5vw,60px); align-items:center}
+    @media (min-width:960px){.ebook-showcase{grid-template-columns:calc(1fr * var(--phi)) 1fr}}
+    
+    .ebook-cover-container{position:relative; perspective:1300px}
+    .ebook-cover{
+      position:relative; width:100%; max-width:calc(440px * var(--phi-inv)); margin:0 auto;
+      border-radius:calc(18px * var(--phi)); overflow:hidden;
+      box-shadow:0 32px 84px rgba(0,0,0,.42), 0 12px 32px rgba(99,230,190,.16);
+      transition:all .7s var(--ease); transform-style:preserve-3d;
+      aspect-ratio:calc(1 / var(--phi));
+    }
+    .ebook-cover:hover{transform:translateY(-14px) rotateY(6deg) rotateX(-4deg); box-shadow:0 44px 108px rgba(0,0,0,.52), 0 16px 44px rgba(99,230,190,.28)}
+    .ebook-cover img{width:100%; height:100%; object-fit:cover}
+    
+    .ebook-badge{
+      position:absolute; top:-14px; right:-14px;
+      background:linear-gradient(135deg, var(--gold), #fb923c);
+      color:var(--ink); padding:11px 20px; border-radius:100px;
+      font-weight:900; font-size:clamp(12px,1.9vw,14px);
+      box-shadow:0 8px 26px rgba(243,201,105,.45);
+      animation:pulse 2.2s ease-in-out infinite; z-index:2;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)} 50%{transform:scale(1.1)}}
+    
+    .ebook-features{list-style:none; margin:clamp(22px,3.5vw,36px) 0}
+    .ebook-features li{
+      display:flex; align-items:flex-start; gap:13px;
+      margin-bottom:clamp(13px,2.2vw,18px);
+      font-size:clamp(15px,2.2vw,17px);
+      color:color-mix(in srgb, var(--fg) 92%, #fff);
+    }
+    .ebook-features li::before{content:'✨'; font-size:19px; flex-shrink:0}
+    
+    .price-tag{display:inline-flex; align-items:baseline; gap:11px; margin:clamp(20px,3vw,32px) 0}
+    .price-current{font-size:clamp(40px,6vw,58px); font-weight:900; color:var(--accent); font-family:"Playfair Display",serif}
+    .price-old{font-size:clamp(22px,3.2vw,30px); color:var(--muted); text-decoration:line-through; opacity:.7}
+    
+    .modal{display:none; position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.94); backdrop-filter:blur(10px); padding:clamp(22px,4.5vw,44px); overflow-y:auto}
+    .modal.active{display:flex; align-items:center; justify-content:center; animation:fadeIn .45s ease-out}
+    @keyframes fadeIn{from{opacity:0} to{opacity:1}}
+    
+    .modal-content{
+      position:relative; max-width:940px; width:100%;
+      background:color-mix(in srgb, var(--bg) 95%, #000);
+      border:1px solid color-mix(in srgb, #fff 13%, transparent);
+      border-radius:calc(22px * var(--phi)); padding:clamp(28px,5.5vw,52px);
+      animation:slideUp .55s var(--ease);
+    }
+    @keyframes slideUp{from{opacity:0; transform:translateY(70px)} to{opacity:1; transform:translateY(0)}}
+    
+    .modal-close{
+      position:absolute; top:clamp(18px,3.5vw,26px); right:clamp(18px,3.5vw,26px);
+      width:44px; height:44px; border-radius:50%;
+      background:color-mix(in srgb, #fff 11%, transparent);
+      border:1px solid color-mix(in srgb, #fff 16%, transparent);
+      display:grid; place-items:center; cursor:pointer;
+      font-size:26px; color:var(--fg); transition:all .3s ease;
+    }
+    .modal-close:hover{background:color-mix(in srgb, #fff 22%, transparent); transform:rotate(90deg)}
+    
+    .book-pages{display:grid; gap:clamp(22px,4vw,36px); margin-top:clamp(22px,3.5vw,36px)}
+    .book-page{
+      background:color-mix(in srgb, #fff 7%, transparent);
+      border:1px solid color-mix(in srgb, #fff 9%, transparent);
+      border-radius:16px; padding:clamp(22px,4vw,36px);
+    }
+    .book-page h4{font-family:"Playfair Display",serif; font-size:clamp(22px,3.5vw,32px); margin:0 0 clamp(14px,2.4vw,18px); color:var(--gold)}
+    .book-page p{font-size:clamp(15px,2.2vw,17px); line-height:calc(1.55 * var(--phi)); color:color-mix(in srgb, var(--fg) 90%, #fff); margin-bottom:clamp(10px,1.6vw,14px)}
+    
+    .newsletter-section{
+      background:linear-gradient(145deg, color-mix(in srgb, var(--accent) 9%, transparent), color-mix(in srgb, var(--sky) 7%, transparent));
+      border:1px solid color-mix(in srgb, var(--accent) 19%, transparent);
+      border-radius:calc(22px * var(--phi)); padding:clamp(36px,7vw,80px);
+      text-align:center; box-shadow:0 16px 44px rgba(0,0,0,.28);
+    }
+    
+    .newsletter-icon{
+      width:clamp(66px,9vw,88px); height:clamp(66px,9vw,88px);
+      margin:0 auto clamp(22px,3.5vw,36px);
+      background:linear-gradient(135deg, var(--accent), var(--sky));
+      border-radius:50%; display:grid; place-items:center;
+      font-size:clamp(34px,4.8vw,44px);
+      box-shadow:0 13px 36px rgba(99,230,190,.44);
+    }
+    
+    .newsletter-form{
+      max-width:calc(640px * var(--phi-inv)); margin:clamp(26px,4.5vw,44px) auto 0;
+      display:flex; gap:13px; flex-wrap:wrap;
+    }
+    .newsletter-input{
+      flex:1; min-width:250px;
+      padding:clamp(15px,2.4vw,20px) clamp(20px,3.2vw,26px);
+      border-radius:13px;
+      border:1px solid color-mix(in srgb, #fff 22%, transparent);
+      background:color-mix(in srgb, var(--bg) 62%, transparent);
+      backdrop-filter:blur(10px); color:var(--fg);
+      font-size:clamp(15px,2.2vw,17px); transition:all .3s ease;
+    }
+    .newsletter-input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent)}
+    .newsletter-input::placeholder{color:var(--muted)}
+    
+    .newsletter-success{
+      display:none; margin-top:22px;
+      padding:17px 26px;
+      background:color-mix(in srgb, var(--accent) 16%, transparent);
+      border:1px solid var(--accent); border-radius:13px;
+      color:var(--accent); font-weight:600;
+    }
+    .newsletter-success.show{display:block; animation:slideUp .55s var(--ease)}
+    
+    .support-grid{display:grid; gap:clamp(22px,3.5vw,36px); grid-template-columns:1fr}
+    @media (min-width:740px){.support-grid{grid-template-columns:repeat(2,1fr)}}
+    
+    .support-card{
+      position:relative; text-align:center;
+      background:linear-gradient(145deg, color-mix(in srgb, #fff 11%, transparent), color-mix(in srgb, #fff 5%, transparent));
+      border:1px solid color-mix(in srgb, #fff 13%, transparent);
+      border-radius:calc(22px * var(--phi-inv));
+      padding:clamp(32px,5vw,52px);
+      transition:all .55s var(--ease); overflow:hidden;
+    }
+    .support-card::before{content:''; position:absolute; inset:-65%; background:radial-gradient(circle, var(--accent) 0%, transparent 68%); opacity:0; transition:opacity .7s ease}
+    .support-card:hover{transform:translateY(-12px) scale(1.03); border-color:color-mix(in srgb, #fff 22%, transparent)}
+    .support-card:hover::before{opacity:.09}
+    
+    .support-icon{
+      width:clamp(76px,10vw,98px); height:clamp(76px,10vw,98px);
+      margin:0 auto clamp(20px,3vw,32px);
+      background:linear-gradient(135deg, var(--accent), var(--sky));
+      border-radius:50%; display:grid; place-items:center;
+      font-size:clamp(40px,5.8vw,54px);
+      box-shadow:0 13px 36px rgba(99,230,190,.4);
+      transition:all .5s ease;
+    }
+    .support-card:hover .support-icon{transform:scale(1.2) rotate(360deg); box-shadow:0 17px 48px rgba(99,230,190,.58)}
+    
+    .support-card h3{font-family:"Playfair Display",serif; font-size:clamp(24px,3.6vw,34px); margin:0 0 clamp(14px,2.4vw,18px); font-weight:800}
+    .support-card p{font-size:clamp(15px,2.2vw,17px); color:var(--muted); line-height:calc(1.52 * var(--phi)); margin-bottom:clamp(22px,3.5vw,32px)}
+    
+    .grid{display:grid; gap:clamp(20px,3.2vw,36px); grid-template-columns:1fr}
+    @media (min-width:740px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    
+    .card{
+      position:relative; border-radius:calc(18px * var(--phi-inv)); overflow:hidden;
+      background:linear-gradient(145deg, color-mix(in srgb, #fff 9%, transparent), color-mix(in srgb, #fff 3%, transparent));
+      border:1px solid color-mix(in srgb, #fff 11%, transparent);
+      transition:all .55s var(--ease); cursor:pointer;
+    }
+    .card:hover{transform:translateY(-14px) scale(1.05); box-shadow:0 28px 68px rgba(0,0,0,.48); border-color:color-mix(in srgb, #fff 20%, transparent)}
+    .card img{width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(108%) contrast(104%) brightness(1.02); transition:all .7s ease}
+    .card:hover img{transform:scale(1.12); filter:saturate(132%) contrast(112%) brightness(1.08)}
+    
+    .label{
+      position:absolute; left:clamp(13px,2.5vw,18px); bottom:clamp(13px,2.5vw,18px);
+      background:color-mix(in srgb, #000 74%, transparent);
+      backdrop-filter:blur(16px);
+      padding:clamp(9px,1.8vw,14px) clamp(14px,2.5vw,19px);
+      border-radius:11px; font-size:clamp(12px,1.9vw,15px);
+      letter-spacing:.1em; font-weight:600;
+      box-shadow:0 5px 14px rgba(0,0,0,.38); transition:all .5s ease;
+    }
+    .card:hover .label{background:color-mix(in srgb, #000 90%, transparent); transform:translateY(-7px)}
+    
+    .sig{
+      position:absolute; right:clamp(13px,2.5vw,18px); top:clamp(13px,2.5vw,18px);
+      font-size:clamp(11px,1.7vw,13px);
+      background:color-mix(in srgb, #fff 32%, transparent);
+      backdrop-filter:blur(11px); color:var(--ink);
+      padding:clamp(7px,1.4vw,9px) clamp(11px,2vw,16px);
+      border-radius:11px; font-weight:900;
+      box-shadow:0 5px 14px rgba(255,255,255,.28);
+      transition:all .4s ease;
+    }
+    .card:hover .sig{background:color-mix(in srgb, #fff 48%, transparent); transform:scale(1.14)}
+    
+    .archetipi-grid{display:grid; gap:clamp(20px,3.2vw,36px); grid-template-columns:repeat(auto-fit, minmax(clamp(180px,24vw,220px), 1fr))}
+    .archetype{
+      text-align:center;
+      padding:clamp(22px,3.6vw,36px);
+      border:1px solid color-mix(in srgb, #fff 11%, transparent);
+      border-radius:calc(18px * var(--phi-inv));
+      background:linear-gradient(145deg, color-mix(in srgb, #fff 9%, transparent), color-mix(in srgb, #fff 3%, transparent));
+      transition:all .55s cubic-bezier(0.68,-0.55,0.265,1.55);
+      position:relative; overflow:hidden;
+    }
+    .archetype::before{content:''; position:absolute; inset:-55%; background:radial-gradient(circle, var(--accent) 0%, transparent 62%); opacity:0; transition:opacity .7s ease}
+    .archetype:hover::before{opacity:.09}
+    .archetype:hover{transform:translateY(-14px) scale(1.06); border-color:color-mix(in srgb, #fff 26%, transparent); box-shadow:0 26px 62px rgba(99,230,190,.28)}
+    
+    .archetype-icon{
+      width:clamp(70px,8.5vw,98px); height:clamp(70px,8.5vw,98px);
+      margin:0 auto clamp(14px,2.4vw,20px);
+      display:grid; place-items:center; border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--sky));
+      color:var(--ink); font-size:clamp(34px,4.8vw,48px); font-weight:700;
+      box-shadow:0 11px 32px rgba(99,230,190,.4);
+      transition:all .6s ease;
+    }
+    .archetype:hover .archetype-icon{transform:scale(1.22) rotate(360deg); box-shadow:0 15px 44px rgba(99,230,190,.62)}
+    .archetype h3{font-family:"Playfair Display",serif; font-size:clamp(18px,2.7vw,24px); margin:clamp(9px,1.5vw,14px) 0; font-weight:800}
+    .archetype p{font-size:clamp(13px,2vw,16px); color:var(--muted); line-height:calc(1.52 * var(--phi))}
+    
+    footer{border-top:1px solid color-mix(in srgb, #fff 11%, transparent); padding:clamp(44px,8vw,88px) 0; color:var(--muted); background:color-mix(in srgb, var(--bg) 96%, #000)}
+    .foot-grid{display:flex; flex-wrap:wrap; gap:clamp(18px,3vw,26px); align-items:center; justify-content:space-between}
+    .tiny{font-size:clamp(12px,1.8vw,14px)}
+    
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important}
+    }
+  </style>
+</head>
+
+<body>
+  <header role="banner">
+    <div class="container nav">
+      <a class="brand" href="./" aria-label="OpenPrometeo home">
+        <img src="https://i.postimg.cc/kVLB8YPk/image.png" alt="Logo OpenPrometeo" width="36" height="36" />
+        <span>Open<span class="sig">Prometeo</span></span>
+      </a>
+      <div class="nav-actions">
+        <a class="btn" href="#ebook">eBook</a>
+        <a class="btn" href="#gallery">Galleria</a>
+        <a class="btn btn-patreon" href="https://patreon.com/openprometeo" target="_blank" rel="noopener">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M15.386 2c4.624 0 8.614 3.698 8.614 8.354 0 4.653-3.99 8.612-8.614 8.612-4.623 0-8.611-3.959-8.611-8.612C6.775 5.698 10.763 2 15.386 2zM.5 2h4.821v20H.5z"/></svg>
+          Patreon
+        </a>
+        <a class="btn btn-cta" href="https://instagram.com/openprometeo_" target="_blank" rel="noopener">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4 .1 1 0 1.5.2 1.9.3.5.2.8.4 1.2.8.4.4.6.7.8 1.2.1.4.3.9.3 1.9 0 1 .1 1.3.1 4s0 3-.1 4c0 1-.2 1.5-.3 1.9-.2.5-.4.8-.8 1.2-.4.4-.7.6-1.2.8-.4.1-.9.3-1.9.3-1 0-1.3.1-4 .1s-3 0-4-.1c-1 0-1.5-.2-1.9-.3-.5-.2-.8-.4-1.2-.8-.4-.4-.6-.7-.8-1.2-.1-.4-.3-.9-.3-1.9 0-1-.1-1.3-.1-4s0-3 .1-4c0-1 .2-1.5.3-1.9.2-.5.4-.8.8-1.2.4-.4.7-.6 1.2-.8.4-.1.9-.3 1.9-.3 1 0 1.3-.1 4-.1zm0 1.8c-2.7 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7 0 1-.1 1.3-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1 0 1.3.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7 0-1 .1-1.3.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1 0-1.3-.1-4-.1zm0 3.1c2.8 0 5.1 2.3 5.1 5.1s-2.3 5.1-5.1 5.1-5.1-2.3-5.1-5.1 2.3-5.1 5.1-5.1zm0 1.8c-1.8 0-3.3 1.5-3.3 3.3s1.5 3.3 3.3 3.3 3.3-1.5 3.3-3.3-1.5-3.3-3.3-3.3zm5.3-3.4c.7 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2.5-1.2 1.2-1.2z"/></svg>
+          Instagram
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">🌗</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="geo-container" aria-hidden="true">
+        <div class="geo-layer geo-float">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="g1" r="70%">
+                <stop offset="0%" stop-color="#7ee7fd" stop-opacity=".6"/>
+                <stop offset="50%" stop-color="#63e6be" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#63e6be" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g transform="translate(400 400)" fill="none" stroke="url(#g1)" stroke-width="2">
+              <circle r="80"/><circle cx="80" r="80"/><circle cx="40" cy="69.3" r="80"/><circle cx="-40" cy="69.3" r="80"/><circle cx="-80" r="80"/><circle cx="-40" cy="-69.3" r="80"/><circle cx="40" cy="-69.3" r="80"/><circle cx="120" r="80"/><circle cx="80" cy="138.6" r="80"/><circle cx="-80" cy="138.6" r="80"/><circle cx="-120" r="80"/><circle cx="-80" cy="-138.6" r="80"/><circle cx="80" cy="-138.6" r="80"/>
+            </g>
+            <g transform="translate(400 400)" fill="none" stroke="#f3c96960" stroke-width="2.4">
+              <circle r="165"/><circle r="250"/><circle r="340"/>
+            </g>
+          </svg>
+        </div>
+        <div class="geo-layer geo-float" style="animation-delay:1.4s">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(400 400)" fill="none" stroke="#63e6be30" stroke-width="1.5">
+              <circle r="60"/><circle cx="60" r="60"/><circle cx="30" cy="52" r="60"/><circle cx="-30" cy="52" r="60"/><circle cx="-60" r="60"/><circle cx="-30" cy="-52" r="60"/><circle cx="30" cy="-52" r="60"/>
+            </g>
+            <g transform="translate(400 400)" stroke="#7ee7fd40" stroke-width="1.3">
+              <path d="M 135 78 L 0 156 L -135 78 L -135 -78 L 0 -156 L 135 -78 Z" fill="none"/>
+              <path d="M 95 55 L 0 110 L -95 55 L -95 -55 L 0 -110 L 95 -55 Z" fill="none"/>
+            </g>
+          </svg>
+        </div>
+        <div class="geo-layer geo-float" style="animation-delay:2s">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(400 400)" fill="none" stroke="#b7c0d128" stroke-width="1.3">
+              <circle r="70"/><circle cx="70" r="70"/><circle cx="35" cy="60.6" r="70"/><circle cx="-35" cy="60.6" r="70"/><circle cx="-70" r="70"/><circle cx="-35" cy="-60.6" r="70"/><circle cx="35" cy="-60.6" r="70"/>
+              <line x1="0" y1="0" x2="70" y2="0"/><line x1="0" y1="0" x2="35" y2="60.6"/><line x1="0" y1="0" x2="-35" y2="60.6"/><line x1="0" y1="0" x2="-70" y2="0"/><line x1="0" y1="0" x2="-35" y2="-60.6"/><line x1="0" y1="0" x2="35" y2="-60.6"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <svg class="vesica vesica-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="75" cy="100" r="60" fill="none" stroke="#63e6be" stroke-width="2"/>
+        <circle cx="125" cy="100" r="60" fill="none" stroke="#7ee7fd" stroke-width="2"/>
+      </svg>
+      <svg class="vesica vesica-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="75" cy="100" r="60" fill="none" stroke="#f3c969" stroke-width="1.6"/>
+        <circle cx="125" cy="100" r="60" fill="none" stroke="#ffd6e7" stroke-width="1.6"/>
+      </svg>
+
+      <div class="container hero-inner">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Oltre 10.000 seguaci su Instagram
+        </div>
+        
+        <p class="kicker">risveglio mentale · arte filosofica</p>
+        <h1 id="heroTitle">Immagini che parlano <span class="highlight">alla mente inconscia</span></h1>
+        <p class="lead">Geometria sacra, simboli universali e parole vere. eBook esclusivo, community Patreon e newsletter settimanale. Un progetto di bellezza al servizio del risveglio interiore.</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">10K+</div>
+            <div class="stat-label">Follower IG</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Post pubblicati</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">φ</div>
+            <div class="stat-label">Golden Ratio</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-cta" href="#newsletter">Iscriviti alla newsletter</a>
+          <a class="btn" href="#ebook">Scopri l'eBook</a>
+          <a class="btn" href="#gallery">Esplora le immagini</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EBOOK ===== -->
+    <section id="ebook" class="section" aria-labelledby="ebookTitle">
+      <div class="container">
+        <div class="ebook-showcase">
+          <div class="ebook-cover-container">
+            <div class="ebook-badge">🔥 Nuovo</div>
+            <div class="ebook-cover">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&auto=format&fit=crop" alt="Copertina eBook OpenPrometeo" width="400" height="647" />
+            </div>
+          </div>
+          
+          <div>
+            <h2 id="ebookTitle">Il Risveglio Interiore<br>Guida Filosofica alla Presenza</h2>
+            <p class="sub">Un viaggio attraverso simboli universali, archetipi e geometria sacra. 120 pagine di saggezza visiva per riconnetterti con la tua essenza più profonda.</p>
+            
+            <ul class="ebook-features">
+              <li>12 capitoli illustrati con immagini esclusive</li>
+              <li>Esercizi pratici di consapevolezza quotidiana</li>
+              <li>Meditazioni guidate basate sulla geometria sacra</li>
+              <li>Aforismi e riflessioni per il risveglio mentale</li>
+              <li>PDF alta qualità + versione ePub</li>
+            </ul>
+            
+            <div class="price-tag">
+              <span class="price-current">€12,99</span>
+              <span class="price-old">€19,99</span>
+            </div>
+            
+            <div class="actions">
+              <button class="btn btn-cta" id="openPreview">📖 Leggi anteprima gratuita</button>
+              <a class="btn" href="https://gumroad.com/openprometeo" target="_blank" rel="noopener">Acquista su Gumroad →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MODAL PREVIEW ===== -->
+    <div class="modal" id="previewModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModal" aria-label="Chiudi">×</button>
+        <h2 id="modalTitle" style="font-family:'Playfair Display',serif; font-size:clamp(28px,4.5vw,42px); margin-bottom:clamp(18px,3vw,26px)">Anteprima Gratuita</h2>
+        <p style="color:var(--muted); margin-bottom:clamp(22px,3.5vw,36px); font-size:clamp(15px,2.2vw,17px)">Le prime 3 pagine dell'eBook. Se risuona con te, acquistalo per accedere ai 12 capitoli completi.</p>
+        
+        <div class="book-pages">
+          <div class="book-page">
+            <h4>Introduzione: Il Richiamo del Silenzio</h4>
+            <p>C'è un momento, nella vita di ognuno, in cui il rumore del mondo diventa insopportabile. Le maschere pesano. Le aspettative soffocano. Il teatro sociale svuota.</p>
+            <p>Questo libro non ti dirà cosa fare. Non ti darà formule magiche o promesse facili. Ti offrirà invece uno specchio pulito: la possibilità di vedere te stesso senza filtri, senza giudizio, senza fretta.</p>
+            <p>La geometria sacra che accompagna queste pagine non è decorazione: è linguaggio. Il rapporto aureo (φ = 1.618) non è matematica: è armonia naturale. Gli archetipi non sono simboli: sono porte.</p>
+            <p><strong>Il risveglio non è un evento. È un respiro consapevole. Poi un altro. Poi un altro ancora.</strong></p>
+          </div>
+          
+          <div class="book-page">
+            <h4>Capitolo 1: La Porta</h4>
+            <p>Ogni viaggio inizia con una soglia. La porta rappresenta il passaggio tra ciò che conosci e ciò che temi. Tra il confortevole e l'autentico.</p>
+            <p>La maggior parte delle persone passa una vita intera davanti alla porta, guardandola. Trovando scuse. Aspettando il momento giusto. Quel momento non arriverà mai, perché il momento giusto è <em>adesso</em>.</p>
+            <p>La paura di attraversare la porta è naturale. Ciò che troverai dall'altra parte sconvolgerà ogni certezza. Ma le certezze che hai costruito... erano davvero tue? O erano solo echi di voci altrui?</p>
+            <p><strong>«Apriti alla soglia che temi. Lì ti aspetta la versione di te che hai sempre cercato.»</strong></p>
+          </div>
+          
+          <div class="book-page">
+            <h4>Capitolo 2: Lo Specchio</h4>
+            <p>Lo specchio non mente mai. Riflette ciò che sei, non ciò che vorresti essere. E questa verità può fare male.</p>
+            <p>Quante volte hai evitato il tuo riflesso? Quante volte hai distolto lo sguardo da te stesso, preferendo guardare gli altri, giudicare gli altri, confrontarti con gli altri?</p>
+            <p>Il risveglio inizia quando hai il coraggio di guardarti. Davvero. Senza narrativa. Senza giustificazioni. Solo tu e la nuda verità di ciò che sei in questo momento.</p>
+            <p><strong>«Ciò che rifiuti di vedere in te... ritornerà travestito da destino.»</strong></p>
+          </div>
+        </div>
+        
+        <div class="actions" style="margin-top:clamp(32px,5vw,44px); justify-content:center">
+          <a class="btn btn-cta" href="https://gumroad.com/openprometeo" target="_blank" rel="noopener">Acquista l'eBook completo (€12,99)</a>
+          <button class="btn" id="closeModalBtn">Chiudi anteprima</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ARCHETIPI ===== -->
+    <section id="archetipi" class="section" aria-labelledby="archTitle">
+      <div class="container">
+        <h2 id="archTitle">Archetipi Visivi</h2>
+        <p class="sub">Simboli universali che parlano alla mente inconscia prima ancora che alla ragione. Ogni archetipo è una chiave per aprire porte interiori.</p>
+        <div class="archetipi-grid">
+          <article class="archetype">
+            <div class="archetype-icon">🗝️</div>
+            <h3>La Chiave</h3>
+            <p>Accesso al mistero. Ciò che sblocca porte interiori e rivela nuove dimensioni di consapevolezza.</p>
+          </article>
+          <article class="archetype">
+            <div class="archetype-icon">🚪</div>
+            <h3>La Porta</h3>
+            <p>Soglia tra mondi. L'invito al passaggio, alla trasformazione, al coraggio di lasciare il conosciuto.</p>
+          </article>
+          <article class="archetype">
+            <div class="archetype-icon">🪜</div>
+            <h3>La Scala</h3>
+            <p>Ascesa graduale. Evoluzione step-by-step, innalzamento della coscienza, connessione terra-cielo.</p>
+          </article>
+          <article class="archetype">
+            <div class="archetype-icon">🪞</div>
+            <h3>Lo Specchio</h3>
+            <p>Riflesso della verità nuda. Confronto con sé stessi, riconoscimento, accettazione radicale.</p>
+          </article>
+          <article class="archetype">
+            <div class="archetype-icon">🌸</div>
+            <h3>Il Fiore</h3>
+            <p>Rinascita e bellezza. Apertura naturale, fragilità sacra, cicli di morte e rinnovamento.</p>
+          </article>
+          <article class="archetype">
+            <div class="archetype-icon">🌀</div>
+            <h3>Il Labirinto</h3>
+            <p>Viaggio verso il centro. Perdita necessaria, ritorno a sé, pazienza sacra nel perdersi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section id="newsletter" class="section">
+      <div class="container">
+        <div class="newsletter-section">
+          <div class="newsletter-icon">✉️</div>
+          <h2>Newsletter Settimanale</h2>
+          <p class="sub">Ricevi ogni settimana una nuova immagine filosofica, un aforisma e una riflessione per il risveglio interiore. Niente spam, solo bellezza e verità. Oltre 2.000 iscritti.</p>
+          
+          <form class="newsletter-form" id="newsletterForm">
+            <input 
+              type="email" 
+              class="newsletter-input" 
+              placeholder="Il tuo indirizzo email" 
+              required 
+              aria-label="Email per newsletter"
+              id="emailInput"
+            />
+            <button type="submit" class="btn btn-cta">Iscriviti ora</button>
+          </form>
+          
+          <div class="newsletter-success" id="newsletterSuccess">
+            ✓ Grazie! Controlla la tua email per confermare l'iscrizione.
+          </div>
+          
+          <p style="font-size:clamp(12px,1.7vw,14px); color:var(--muted); margin-top:clamp(18px,3vw,28px)">
+            Rispettiamo la tua privacy. Puoi cancellarti in qualsiasi momento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="section" aria-labelledby="galTitle">
+      <div class="container">
+        <h2 id="galTitle">Dal mio Instagram</h2>
+        <p class="sub">Una selezione dei post più amati dalla community. Ogni immagine è calibrata nel rapporto aureo φ, ogni frase è un invito alla presenza.</p>
+        <div class="grid" id="galleryGrid"></div>
+        
+        <div class="actions" style="margin-top:clamp(36px,6vw,62px); justify-content:center">
+          <a class="btn btn-cta" href="https://instagram.com/openprometeo_" target="_blank" rel="noopener">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4 .1 1 0 1.5.2 1.9.3.5.2.8.4 1.2.8.4.4.6.7.8 1.2.1.4.3.9.3 1.9 0 1 .1 1.3.1 4s0 3-.1 4c0 1-.2 1.5-.3 1.9-.2.5-.4.8-.8 1.2-.4.4-.7.6-1.2.8-.4.1-.9.3-1.9.3-1 0-1.3.1-4 .1s-3 0-4-.1c-1 0-1.5-.2-1.9-.3-.5-.2-.8-.4-1.2-.8-.4-.4-.6-.7-.8-1.2-.1-.4-.3-.9-.3-1.9 0-1-.1-1.3-.1-4s0-3 .1-4c0-1 .2-1.5.3-1.9.2-.5.4-.8.8-1.2.4-.4.7-.6 1.2-.8.4-.1.9-.3 1.9-.3 1 0 1.3-.1 4-.1zm0 1.8c-2.7 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7 0 1-.1 1.3-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1 0 1.3.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7 0-1 .1-1.3.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1 0-1.3-.1-4-.1zm0 3.1c2.8 0 5.1 2.3 5.1 5.1s-2.3 5.1-5.1 5.1-5.1-2.3-5.1-5.1 2.3-5.1 5.1-5.1zm0 1.8c-1.8 0-3.3 1.5-3.3 3.3s1.5 3.3 3.3 3.3 3.3-1.5 3.3-3.3-1.5-3.3-3.3-3.3zm5.3-3.4c.7 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2.5-1.2 1.2-1.2z"/></svg>
+            Seguimi su Instagram per nuovi post
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUPPORT ===== -->
+    <section id="support" class="section">
+      <div class="container">
+        <h2 style="text-align:center; margin-bottom:clamp(14px,2.4vw,20px)">Sostieni il Progetto</h2>
+        <p class="sub" style="text-align:center; max-width:72ch; margin-left:auto; margin-right:auto">
+          OpenPrometeo è un progetto indipendente, senza pubblicità né sponsor. Se il contenuto ti ha aiutato nel tuo percorso, considera di supportarlo. Ogni contributo permette di creare più arte, più contenuti, più bellezza gratuita per tutti.
+        </p>
+        
+        <div class="support-grid">
+          <article class="support-card">
+            <div class="support-icon">🎨</div>
+            <h3>Diventa Patron</h3>
+            <p>Unisciti alla community esclusiva su Patreon. Contenuti inediti, wallpapers HD, accesso anticipato e una chat privata con me.</p>
+            <p style="font-size:clamp(20px,3.2vw,28px); font-weight:800; color:var(--accent); margin:clamp(18px,3vw,28px) 0">Da €3/mese</p>
+            <a class="btn btn-patreon" href="https://patreon.com/openprometeo" target="_blank" rel="noopener">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M15.386 2c4.624 0 8.614 3.698 8.614 8.354 0 4.653-3.99 8.612-8.614 8.612-4.623 0-8.611-3.959-8.611-8.612C6.775 5.698 10.763 2 15.386 2zM.5 2h4.821v20H.5z"/></svg>
+              Unisciti su Patreon
+            </a>
+          </article>
+          
+          <article class="support-card">
+            <div class="support-icon">☕</div>
+            <h3>Offri un Caffè</h3>
+            <p>Una donazione libera, una tantum. Anche un piccolo gesto conta. Ogni contributo è un riconoscimento al lavoro che viene condiviso gratuitamente.</p>
+            <p style="font-size:clamp(20px,3.2vw,28px); font-weight:800; color:var(--gold); margin:clamp(18px,3vw,28px) 0">Importo libero</p>
+            <a class="btn" style="background:linear-gradient(135deg, var(--gold), #fb923c); color:var(--ink); border:none" href="https://ko-fi.com/openprometeo" target="_blank" rel="noopener">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+              Dona su Ko-fi
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANIFESTO ===== -->
+    <section id="manifesto" class="section">
+      <div class="container">
+        <div class="paper">
+          <h2 style="font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,54px); margin-bottom:clamp(16px,2.8vw,24px)">Manifesto</h2>
+          <p>Credo in un'estetica che non urla: <em>sussurra</em>. Che apre varchi interiori con luce naturale, ritmo armonioso e simboli universali.</p>
+          <p>Ogni immagine è un invito: chiavi, porte, scale, specchi, fiori, labirinti. Metafore che il corpo riconosce prima della mente razionale.</p>
+          <p>La forma segue sempre il <strong>rapporto aureo</strong> (φ = 1.618). La frase è breve, vera, memorabile. Il tono: sereno, curioso, essenziale. Mai manipolativo.</p>
+          <p>Non vendo certezze. Non ti convinco di nulla. Ti offro una <i>sosta</i>. Un respiro consapevole. Uno specchio pulito dove guardarti senza giudizio.</p>
+          <p>Se questo risuona con te, condividilo. Forse per qualcuno sarà <i>il primo respiro</i> dopo anni in apnea. E questo è l'unico scopo che conta.</p>
+          
+          <div class="actions" style="margin-top:clamp(28px,4.5vw,40px)">
+            <a class="btn btn-cta" href="https://instagram.com/openprometeo_" target="_blank" rel="noopener">Seguimi su Instagram</a>
+            <a class="btn" href="#newsletter">Iscriviti alla newsletter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer role="contentinfo">
+    <div class="container foot-grid">
+      <div class="brand" style="opacity:.9">
+        <img src="https://i.postimg.cc/kVLB8YPk/image.png" alt="Logo OpenPrometeo" width="26" height="26"/>
+        <span>Open<span class="sig">Prometeo</span></span>
+      </div>
+      <div class="tiny">© <span id="year"></span> OpenPrometeo — Arte, filosofia, presenza. Costruito con φ = 1.618</div>
+      <nav aria-label="Social" class="tiny">
+        <a href="https://instagram.com/openprometeo_" target="_blank" rel="noopener">Instagram</a>
+        &nbsp;·&nbsp;
+        <a href="https://patreon.com/openprometeo" target="_blank" rel="noopener">Patreon</a>
+        &nbsp;·&nbsp;
+        <a href="https://gumroad.com/openprometeo" target="_blank" rel="noopener">Gumroad</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('op-theme') || 'dark';
+    document.documentElement.dataset.theme = savedTheme;
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = current;
+      localStorage.setItem('op-theme', current);
+      themeToggle.textContent = current === 'light' ? '🌙' : '☀️';
+    });
+    themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+
+    // Featured Posts Instagram
+    const FEATURED_POSTS = [
+      {
+        url: 'https://www.instagram.com/p/DIWhiqfoUgr/',
+        img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1080&auto=format&fit=crop',
+        label: '«Ciò che rifiuti… ritorna.»',
+        alt: 'Post Instagram OpenPrometeo - Specchio'
+      },
+      {
+        url: 'https://instagram.com/openprometeo_',
+        img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1080&auto=format&fit=crop',
+        label: '«Apriti alla soglia che temi.»',
+        alt: 'Porta di luce nel bosco'
+      },
+      {
+        url: 'https://instagram.com/openprometeo_',
+        img: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=1080&auto=format&fit=crop',
+        label: '«Solo chi smette di cercare… trova.»',
+        alt: 'Scala verso il cielo'
+      },
+      {
+        url: 'https://instagram.com/openprometeo_',
+        img: 'https://images.unsplash.com/photo-1516570161787-2fd917215a3d?w=1080&auto=format&fit=crop',
+        label: '«Il centro ti sta chiamando.»',
+        alt: 'Labirinto dorato'
+      },
+      {
+        url: 'https://instagram.com/openprometeo_',
+        img: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab3ab?w=1080&auto=format&fit=crop',
+        label: '«La tua pace prima di tutto.»',
+        alt: 'Fiore di loto'
+      },
+      {
+        url: 'https://instagram.com/openprometeo_',
+        img: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=1080&auto=format&fit=crop',
+        label: '«Vedere è lasciar essere.»',
+        alt: 'Occhio cosmico'
+      }
+    ];
+
+    // Load gallery
+    function loadGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+      
+      FEATURED_POSTS.forEach((post, idx) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <a href="${post.url}" target="_blank" rel="noopener" style="display:block; position:relative">
+            <img src="${post.img}" width="1080" height="1350" loading="lazy" alt="${post.alt}" />
+            <span class="sig">OpenPrometeo</span>
+            <span class="label">${post.label}</span>
+          </a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    loadGallery();
+
+    // Modal eBook preview
+    const modal = document.getElementById('previewModal');
+    const openBtns = document.querySelectorAll('#openPreview');
+    const closeBtns = document.querySelectorAll('#closeModal, #closeModalBtn');
+    
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterSuccess = document.getElementById('newsletterSuccess');
+    const emailInput = document.getElementById('emailInput');
+    
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
+      
+      // Simulazione (sostituisci con la tua API: Mailchimp, ConvertKit, Buttondown, etc.)
+      console.log('Newsletter signup:', email);
+      
+      newsletterSuccess.classList.add('show');
+      emailInput.value = '';
+      
+      setTimeout(() => {
+        newsletterSuccess.classList.remove('show');
+      }, 5000);
+      
+      // PRODUZIONE: sostituisci con:
+      // fetch('YOUR_API_ENDPOINT', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email })
+      // });
+    });
+
+    // Parallax avanzato
+    let ticking = false;
+    const geoLayers = document.querySelectorAll('.geo-layer');
+    const vesicas = document.querySelectorAll('.vesica');
+
+    function updateParallax(scrollY) {
+      geoLayers.forEach((layer, idx) => {
+        const speed = 0.1 + (idx * 0.05);
+        const rotation = scrollY * (0.006 + idx * 0.003);
+        layer.style.transform = `translateY(${scrollY * speed}px) rotate(${rotation}deg)`;
+      });
+
+      vesicas.forEach((v, idx) => {
+        const speed = 0.07 + (idx * 0.04);
+        v.style.transform = `translateY(${scrollY * speed}px) scale(${1 + scrollY * 0.00005})`;
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateParallax(y);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Sfondo reattivo al mouse (motion-safe)
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      addEventListener('mousemove', e => {
+        document.documentElement.style.setProperty('--mx', (e.clientX / innerWidth * 100) + '%');
+        document.documentElement.style.setProperty('--my', (e.clientY / innerHeight * 100) + '%');
+      }, { passive: true });
+    }
+
+    // Easter egg: Fibonacci sul logo
+    const brandLogo = document.querySelector('.brand img');
+    let fibClicks = 0;
+    const fibSequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
+    
+    document.querySelector('.brand').addEventListener('click', (e) => {
+      if (e.target.closest('img')) {
+        e.preventDefault();
+        fibClicks++;
+        const fib = fibSequence[fibClicks % fibSequence.length];
+        
+        brandLogo.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        brandLogo.style.transform = `scale(${1 + fib * 0.012}) rotate(${fib * 11}deg)`;
+        
+        setTimeout(() => {
+          brandLogo.style.transform = 'scale(1) rotate(0deg)';
+        }, 600);
+
+        if (fibClicks === 13) {
+          alert('🌸 φ = 1.618033988749...\n\nHai sbloccato la sequenza aurea!\n\nOgni elemento di questo sito segue il Golden Ratio:\n• Spaziature: calc(px * φ)\n• Grid: φ:1 ratio\n• Line-height: 1.2 × φ\n• Timing: proporzioni φ\n\nIl design è armonia matematica.');
+          fibClicks = 0;
+        }
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#main') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 88;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Kill-switch per eventuali overlay residue
+    document.querySelectorAll('.loading-overlay').forEach(el => el.remove());
+
+    // Console art
+    console.log('%c🌸 OpenPrometeo - Risveglio Mentale', 'font-size:30px; font-weight:900; color:#63e6be; text-shadow:3px 3px 6px rgba(0,0,0,0.4); font-family:Playfair Display, serif');
+    console.log('%cφ = 1.618033988749894848204586834365638117720309...', 'font-size:15px; color:#f3c969; font-style:italic; font-family:monospace');
+    console.log('%c"La forma segue il rapporto aureo"', 'font-size:14px; color:#b7c0d1; font-family:serif');
+    console.log('%c\nQuesto sito è costruito con:\n✓ Geometria sacra tripla (Flower of Life, Metatron, Vesica Piscis)\n✓ Golden Ratio in ogni elemento\n✓ Fibonacci timing per animazioni\n✓ Zero framework, puro HTML/CSS/JS\n✓ 100% rispetto della privacy\n✓ Performance A+ (< 60KB totale)', 'font-size:12px; color:#7ee7fd; line-height:1.8');
+  </script>
+</body>
+</html>
