@@ -198,10 +198,10 @@
     </ul>
 
     <div class="button-row">
-      <!-- 🔥 Sostituisci QUI con il link del tuo Patreon -->
+      <!-- https://www.patreon.com/c/IME1992 -->
       <a
         class="btn-primary"
-        href="https://www.patreon.com/TUO_NOME_PATREON"
+        href="https://www.patreon.com/c/IME1992"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -209,7 +209,7 @@
         <span>Supportaci su Patreon</span>
       </a>
 
-      <a class="btn-secondary" href="https://www.instagram.com/TUA_PAGINA_IG" target="_blank" rel="noopener noreferrer">
+      <a class="btn-secondary" href="https://www.instagram.com/openprometeo" target="_blank" rel="noopener noreferrer">
         Vai alla nostra pagina Instagram
       </a>
     </div>
@@ -221,3 +221,4 @@
   </main>
 </body>
 </html>
+
