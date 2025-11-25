@@ -826,6 +826,163 @@
         scroll-behavior:auto !important;
       }
     }
+
+/* ===== MOBILE FINE-TUNING (smartphone) ===== */
+@media (max-width: 640px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  /* Header + nav */
+  .nav {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-right {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a {
+    white-space: nowrap;
+    padding-right: 14px;
+  }
+
+  .nav-actions {
+    justify-content: flex-end;
+  }
+
+  /* Hero */
+  .hero-inner {
+    padding: 28px 0 40px;
+    gap: 24px;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .lead {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-stats {
+    gap: 18px;
+  }
+
+  .stat {
+    min-width: 0;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn,
+  .hero-preview-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-preview-card {
+    margin-top: 8px;
+  }
+
+  .hero-preview-main {
+    align-items: flex-start;
+  }
+
+  .hero-preview-cover {
+    flex: 0 0 72px;
+  }
+
+  /* Sezioni generali */
+  .section {
+    padding: 40px 0;
+  }
+
+  .section-header {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .section h2 {
+    font-size: 26px;
+  }
+
+  .sub {
+    font-size: 14px;
+  }
+
+  /* Ebook */
+  .ebook-showcase {
+    gap: 26px;
+  }
+
+  .price-tag {
+    margin-top: 14px;
+  }
+
+  /* Newsletter */
+  .newsletter-section {
+    padding: 28px 18px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newsletter-input {
+    min-width: 0;
+  }
+
+  /* Gallery cards */
+  .grid {
+    gap: 18px;
+  }
+
+  .card .label {
+    font-size: 11px;
+  }
+
+  /* Supporto */
+  .support-card {
+    padding: 26px 18px;
+  }
+
+  /* Archetipi */
+  .archetype {
+    padding: 20px 16px;
+  }
+
+  /* Footer */
+  .foot-grid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
   </style>
 </head>
 
